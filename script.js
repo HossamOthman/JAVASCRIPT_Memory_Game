@@ -12,19 +12,32 @@ function flipCard() {
     // first click
     hasFlippedCard = true;
     firstCard = this;
-  } else {
-    hasFlippedCard = false;
-    secondCard = this;
-
-    // do they match ?
-    if (firstCard.dataset.framework === secondCard.dataset.framework) {
-        firstCard.removeEventListener('click', flipCard);
-        secondCard.removeEventListener('click', flipCard);
-    } else {
-        setTimeout(() => {
-            firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
-        }, 1500);
-    }
+    return;
   }
+
+  hasFlippedCard = false;
+  secondCard = this;
+
+  checkForMatch();
+}
+
+function checkForMatch() {
+  // do they match ?
+  if (firstCard.dataset.framework === secondCard.dataset.framework) {
+    disableCards();
+  } else {
+    unflipCards();
+  }
+}
+
+function disableCards() {
+  firstCard.removeEventListener("click", flipCard);
+  secondCard.removeEventListener("click", flipCard);
+}
+
+function unflipCards() {
+  setTimeout(() => {
+    firstCard.classList.remove("flip");
+    secondCard.classList.remove("flip");
+  }, 1500);
 }

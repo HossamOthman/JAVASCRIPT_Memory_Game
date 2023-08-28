@@ -33,7 +33,9 @@ body {
 }
 .memory-card:active {
     transform: scale(1.1);
-    
+}
+.memory-card.flip {
+    transform: rotateY(180deg);
 }
 
 .front-face, .back-face {
